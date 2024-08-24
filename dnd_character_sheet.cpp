@@ -29,7 +29,7 @@ class Character {
 
 };
 
-class dnd_class : private Character {
+class dnd_class {
     public:
     int8_t something;
     private:

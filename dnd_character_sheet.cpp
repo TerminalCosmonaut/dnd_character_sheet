@@ -16,43 +16,62 @@ using std::endl;
 
 class dnd_class {
     public:
-    int8_t something;
+    bool pick_class () { 
+      std::string class_strang;
+      cout << "Please select class" << endl;
+      cout << "Artificer, Bard, Bard, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard" << endl;
+      cin >> class_strang;
+      size_t class_arr_size = sizeof(class_arr) / sizeof(std::string);
+      int8_t *end = class_arr + class_arr_size;
+      int8_t *result = std::find(class_arr, end, class_strang);
+      if (result == end ) {
+        cout << "Invalid class" << endl;
+        return 1;
+      } else {
+        main_class = std::stoi(class_strang);
+        return 0;
+      }
+    }
+
     private:
-    int8_t otherthings;
+    std::string main_class;
+    std::string sub_class;
+    std::string class_arr[13] = {"Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
+    bool multiclass;
 };
 
-class Character {
+class character {
     public:
-    void update_attributes () { //TODO: change newline chars to use endl
+    void update_attributes () { 
       std::string strang;
-      cout << "Please enter attributes \n";
-      cout << "Charisma:\n";
+      cout << "Please enter attributes" << endl;
+      cout << "Charisma:" << endl;
       cin >> strang;
       cha = std::stoi(strang);
-      cout << "Wisdom:\n";
+      cout << "Wisdom:" << endl;
       cin >> strang;
       wis = std::stoi(strang);
-      cout << "Intelligence:\n";
+      cout << "Intelligence:" << endl;
       cin >> strang;
       intel = std::stoi(strang);
-      cout << "Dexterity:\n";
+      cout << "Dexterity:" << endl;
       cin >> strang;
       dex = std::stoi(strang);
-      cout << "Strength:\n";
+      cout << "Strength:" << endl;
       cin >> strang;
       str = std::stoi(strang);
-      cout << "Constitution:\n";
+      cout << "Constitution:" << endl;
       cin >> strang;
       con = std::stoi(strang);
     }
 
-    void print_attributes () { // TODO : make formatting nicer
-      cout << std::to_string(cha) << endl;
-      cout << std::to_string(wis) << endl;
-      cout << std::to_string(intel) << endl;
-      cout << std::to_string(dex) << endl;
-      cout << std::to_string(str) << endl;
-      cout << std::to_string(con) << endl;
+    void print_attributes () { 
+      cout << "Charisma: " << std::to_string(cha) << endl;
+      cout << "Wisdom: " << std::to_string(wis) << endl;
+      cout << "Intelligence: " << std::to_string(intel) << endl;
+      cout << "Dexterity: " << std::to_string(dex) << endl;
+      cout << "Strength: " << std::to_string(str) << endl;
+      cout << "Constitution: " << std::to_string(con) << endl;
     }
     private:
     int8_t cha;
@@ -62,13 +81,12 @@ class Character {
     int8_t str;
     int8_t con;
 
-    bool multiclass; // maybe amalgamate
     dnd_class char_class; 
 
     int8_t speed;
     int16_t hp;
 
-
+    int8_t level;
     int8_t proficiency;
 
 };
@@ -78,8 +96,14 @@ class Character {
 
 int main()
 {
-  Character hulkenburg;
-  hulkenburg.update_attributes();
-  hulkenburg.print_attributes();
+  character hulkenburg;
+  dnd_class haas;
+  bool err_check = 1;
+  while (err_check ==1) {
+    err_check = haas.pick_class(); 
+  }
+  cout << "Complete" << endl;
+  //hulkenburg.update_attributes();
+  //hulkenburg.print_attributes();
   return 0;
 }

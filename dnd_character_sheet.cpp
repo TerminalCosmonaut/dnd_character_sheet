@@ -18,6 +18,8 @@ using std::cerr;
 using std::endl;
 using std::find;
 
+
+
 class dnd_class {
     public:
     bool pick_class () { 
@@ -25,21 +27,81 @@ class dnd_class {
       cout << "Please select class" << endl;
       cout << "Artificer, Barbarian, Bard, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard" << endl;
       cin >> class_strang;
-      bool in_vec = std::find(class_vec.begin(), class_vec.end(), class_strang) != class_vec.end();
+      bool in_vec = std::find(class_list_vec.begin(), class_list_vec.end(), class_strang) != class_list_vec.end();
       if (in_vec == false ) {
         cerr << "Invalid class" << endl;
         return true;
       } else {
         main_class = class_strang;
+        if (class_strang == "Artificer"){ // This is ugly but should only have to do it once
+          iterable_class = 0;
+        } if (class_strang == "Barbarian"){
+          iterable_class = 1;
+        } if (class_strang == "Bard"){
+          iterable_class = 2;
+        } if (class_strang == "Cleric"){
+          iterable_class = 3;
+        } if (class_strang == "Druid"){
+          iterable_class = 4;
+        } if (class_strang == "Fighter"){
+          iterable_class = 5;
+        } if (class_strang == "Monl"){
+          iterable_class = 6;
+        } if (class_strang == "Paladin"){
+          iterable_class = 7;
+        } if (class_strang == "Ranger"){
+          iterable_class = 8;
+        } if (class_strang == "Rogue"){
+          iterable_class = 9;
+        } if (class_strang == "Sorcerer"){
+          iterable_class = 10;
+        } if (class_strang == "Warlock"){
+          iterable_class = 11;
+        } if (class_strang == "Wizard"){
+          iterable_class = 12;
+        } 
         return false;
       }
       return false;
     }
+    //generic method to pick a subclass for any class, automatically calls the class specific method
+    void pick_sub_class_generic () { // TODO make various subclass pickers
+      switch(iterable_class) {
+        case 0:
+        break;
+        case 1:
+        break;
+        case 2:
+        break;
+        case 3:
+        break;
+        case 4:
+        break;
+        case 5:
+        break;
+        case 6:
+        break;
+        case 7:
+        break;
+        case 8:
+        break;
+        case 9:
+        break;
+        case 10:
+        break;
+        case 11:
+        break;
+        case 12:
+        break;
 
+    }
+    }
     private:
     std::string main_class;
     std::string sub_class;
-    std::vector<std::string> class_vec = {"Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
+    int8_t iterable_class;
+    std::vector<std::string> class_list_vec = {"Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
+    //int8_t iterable_vector[13] = {0,1,2,3,4,5,6,7,8,9,10,11,12};
     bool multiclass;
 };
 
@@ -105,6 +167,7 @@ int main()
   while (err_check ==1) {
     err_check = haas.pick_class(); 
   }
+  haas.pick_sub_class_generic();
   cout << "Complete" << endl;
   //hulkenburg.update_attributes();
   //hulkenburg.print_attributes();

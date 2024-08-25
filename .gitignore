@@ -1,5 +1,6 @@
 # vscode settings file
 .json
+.vscode
 # Prerequisites
 *.d
 

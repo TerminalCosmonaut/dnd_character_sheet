@@ -14,6 +14,7 @@ then run program.exe from within the directory
 
 using std::cin;
 using std::cout;
+using std::cerr;
 using std::endl;
 using std::find;
 
@@ -26,7 +27,7 @@ class dnd_class {
       cin >> class_strang;
       bool in_vec = std::find(class_vec.begin(), class_vec.end(), class_strang) != class_vec.end();
       if (in_vec == false ) {
-        cout << "Invalid class" << endl;
+        cerr << "Invalid class" << endl;
         return true;
       } else {
         main_class = class_strang;

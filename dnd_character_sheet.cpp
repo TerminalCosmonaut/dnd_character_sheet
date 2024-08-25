@@ -9,34 +9,36 @@ then run program.exe from within the directory
 #include <iostream>
 #include <cstdint>
 #include <string> 
+#include <vector>
+#include <algorithm>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::find;
 
 class dnd_class {
     public:
     bool pick_class () { 
       std::string class_strang;
       cout << "Please select class" << endl;
-      cout << "Artificer, Bard, Bard, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard" << endl;
+      cout << "Artificer, Barbarian, Bard, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard" << endl;
       cin >> class_strang;
-      size_t class_arr_size = sizeof(class_arr) / sizeof(std::string);
-      int8_t *end = class_arr + class_arr_size;
-      int8_t *result = std::find(class_arr, end, class_strang);
-      if (result == end ) {
+      bool in_vec = std::find(class_vec.begin(), class_vec.end(), class_strang) != class_vec.end();
+      if (in_vec == false ) {
         cout << "Invalid class" << endl;
-        return 1;
+        return true;
       } else {
-        main_class = std::stoi(class_strang);
-        return 0;
+        main_class = class_strang;
+        return false;
       }
+      return false;
     }
 
     private:
     std::string main_class;
     std::string sub_class;
-    std::string class_arr[13] = {"Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
+    std::vector<std::string> class_vec = {"Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
     bool multiclass;
 };
 

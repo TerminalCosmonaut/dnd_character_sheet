@@ -73,6 +73,7 @@ class dnd_class {
         pick_sub_class_artificer();
         break;
         case 1:
+        pick_sub_class_barbarian ();
         break;
         case 2:
         break;
@@ -98,7 +99,7 @@ class dnd_class {
         break;
 
     }
-    }
+    }  
     private:
     // picks a subclass for Artificer, private should only be called from pick_sub_class_generic or to be built level up and multiclass functions
     void pick_sub_class_artificer () {
@@ -119,12 +120,33 @@ class dnd_class {
       sub_class = sub_class_strang;
       return;
     }
+
+    // picks a subclass for Barbarian, private should only be called from pick_sub_class_generic or to be built level up and multiclass functions
+    void pick_sub_class_barbarian () {
+      std::string sub_class_strang;
+      std::string cin_flushed;
+      cout << "Please select class" << endl;
+      cout << "Berserker, Totem Warrior, Ancestral Guardian, Storm Herald, Zealot, Beast, Wild Soul, Battlerager" << endl;
+      getline(cin,cin_flushed); // hacky way to clear previous main class input and avoid first input always erroring could be improved
+      getline(cin, sub_class_strang); 
+      bool in_vec = std::find(barbarian_sublcasses_vec.begin(), barbarian_sublcasses_vec.end(), sub_class_strang) != barbarian_sublcasses_vec.end();
+      while (in_vec == false ) {
+        cerr << "Invalid class" << endl;
+        cout << "Please select class" << endl;
+        cout << "Berserker Totem Warrior Ancestral Guardian Storm Herald Zealot Beast Wild Soul Battlerager" << endl;
+        getline(cin, sub_class_strang);
+        in_vec = std::find(barbarian_sublcasses_vec.begin(), barbarian_sublcasses_vec.end(), sub_class_strang) != barbarian_sublcasses_vec.end();
+      }
+      sub_class = sub_class_strang;
+      return;
+    }
     
     std::string main_class;
     std::string sub_class;
     int8_t iterable_class;
     std::vector<std::string> class_list_vec = {"Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
     std::vector<std::string> artificer_sublcasses_vec = {"Armorer", "Alchemist", "Artillerist", "Battle Smith"};
+    std::vector<std::string> barbarian_sublcasses_vec = {"Berserker", "Totem Warrior", "Ancestral Guardian", "Storm Herald","Zealot","Beast","Wild Soul","Battlerager"};
     //int8_t iterable_vector[13] = {0,1,2,3,4,5,6,7,8,9,10,11,12};
     bool multiclass;
 };

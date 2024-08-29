@@ -76,6 +76,7 @@ class dnd_class {
         pick_sub_class_barbarian ();
         break;
         case 2:
+        pick_sub_class_bard ();
         break;
         case 3:
         break;
@@ -133,9 +134,29 @@ class dnd_class {
       while (in_vec == false ) {
         cerr << "Invalid class" << endl;
         cout << "Please select class" << endl;
-        cout << "Berserker Totem Warrior Ancestral Guardian Storm Herald Zealot Beast Wild Soul Battlerager" << endl;
+        cout << "Berserker, Totem Warrior, Ancestral Guardian, Storm Herald, Zealot, Beast, Wild Soul, Battlerager" << endl;
         getline(cin, sub_class_strang);
         in_vec = std::find(barbarian_sublcasses_vec.begin(), barbarian_sublcasses_vec.end(), sub_class_strang) != barbarian_sublcasses_vec.end();
+      }
+      sub_class = sub_class_strang;
+      return;
+    }
+
+    // picks a subclass for Barbarian, private should only be called from pick_sub_class_generic or to be built level up and multiclass functions
+    void pick_sub_class_bard () {
+      std::string sub_class_strang;
+      std::string cin_flushed;
+      cout << "Please select class" << endl;
+      cout << "College of Lore, College of Valor, College of Creation, College of Glamor, College of Swords, College of Whispers, College of Eloquence, College of Spirits" << endl;
+      getline(cin,cin_flushed); // hacky way to clear previous main class input and avoid first input always erroring could be improved
+      getline(cin, sub_class_strang); 
+      bool in_vec = std::find(bard_sublcasses_vec.begin(), bard_sublcasses_vec.end(), sub_class_strang) != bard_sublcasses_vec.end();
+      while (in_vec == false ) {
+        cerr << "Invalid class" << endl;
+        cout << "Please select class" << endl;
+        cout << "College of Lore, College of Valor, College of Creation, College of Glamor, College of Swords, College of Whispers, College of Eloquence, College of Spirits" << endl;
+        getline(cin, sub_class_strang);
+        in_vec = std::find(bard_sublcasses_vec.begin(), bard_sublcasses_vec.end(), sub_class_strang) != bard_sublcasses_vec.end();
       }
       sub_class = sub_class_strang;
       return;
@@ -147,6 +168,8 @@ class dnd_class {
     std::vector<std::string> class_list_vec = {"Artificer", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
     std::vector<std::string> artificer_sublcasses_vec = {"Armorer", "Alchemist", "Artillerist", "Battle Smith"};
     std::vector<std::string> barbarian_sublcasses_vec = {"Berserker", "Totem Warrior", "Ancestral Guardian", "Storm Herald","Zealot","Beast","Wild Soul","Battlerager"};
+    std::vector<std::string> bard_sublcasses_vec = {"College of Lore", "College of Valor", "College of Creation", "College of Glamor", "College of Swords", "College of Whispers", "College of Eloquence", "College of Spirits"};
+
     //int8_t iterable_vector[13] = {0,1,2,3,4,5,6,7,8,9,10,11,12};
     bool multiclass;
 };

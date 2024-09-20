@@ -79,6 +79,7 @@ class dnd_class {
         pick_sub_class_bard ();
         break;
         case 3:
+        pick_sub_class_cleric ();
         break;
         case 4:
         break;
@@ -142,7 +143,7 @@ class dnd_class {
       return;
     }
 
-    // picks a subclass for Barbarian, private should only be called from pick_sub_class_generic or to be built level up and multiclass functions
+    // picks a subclass for Bard, private should only be called from pick_sub_class_generic or to be built level up and multiclass functions
     void pick_sub_class_bard () {
       std::string sub_class_strang;
       std::string cin_flushed;
@@ -161,6 +162,26 @@ class dnd_class {
       sub_class = sub_class_strang;
       return;
     }
+
+    // picks a subclass for Cleric, private should only be called from pick_sub_class_generic or to be built level up and multiclass functions
+    void pick_sub_class_cleric () {
+      std::string sub_class_strang;
+      std::string cin_flushed;
+      cout << "Please select class" << endl;
+      cout << "Knowledge Domain, Life Domain, Light Domain, Nature Domain, Tempest Domain, Trickery Domain, War Domain, Death Domain, Twilight Domain, Order Domain, Forge Domain, Grave Domain, Peace Domain, Arcane Domain" << endl;
+      getline(cin,cin_flushed); // hacky way to clear previous main class input and avoid first input always erroring could be improved
+      getline(cin, sub_class_strang); 
+      bool in_vec = std::find(cleric_subclasses_vec.begin(), cleric_subclasses_vec.end(), sub_class_strang) != cleric_subclasses_vec.end();
+      while (in_vec == false ) {
+        cerr << "Invalid class" << endl;
+        cout << "Please select class" << endl;
+        cout << "Knowledge Domain, Life Domain, Light Domain, Nature Domain, Tempest Domain, Trickery Domain, War Domain, Death Domain, Twilight Domain, Order Domain, Forge Domain, Grave Domain, Peace Domain, Arcane Domain" << endl;
+        getline(cin, sub_class_strang);
+        in_vec = std::find(cleric_subclasses_vec.begin(), cleric_subclasses_vec.end(), sub_class_strang) != cleric_subclasses_vec.end();
+      }
+      sub_class = sub_class_strang;
+      return;
+    }
     
     std::string main_class;
     std::string sub_class;
@@ -169,6 +190,7 @@ class dnd_class {
     std::vector<std::string> artificer_sublcasses_vec = {"Armorer", "Alchemist", "Artillerist", "Battle Smith"};
     std::vector<std::string> barbarian_sublcasses_vec = {"Berserker", "Totem Warrior", "Ancestral Guardian", "Storm Herald","Zealot","Beast","Wild Soul","Battlerager"};
     std::vector<std::string> bard_sublcasses_vec = {"College of Lore", "College of Valor", "College of Creation", "College of Glamor", "College of Swords", "College of Whispers", "College of Eloquence", "College of Spirits"};
+    std::vector<std::string> cleric_subclasses_vec ={"Knowledge Domain", "Life Domain", "Light Domain", "Nature Domain", "Tempest Domain", "Trickery Domain", "War Domain", "Death Domain", "Twilight Domain", "Order Domain", "Forge Domain", "Grave Domain", "Peace Domain", "Arcane Domain"}; 
 
     //int8_t iterable_vector[13] = {0,1,2,3,4,5,6,7,8,9,10,11,12};
     bool multiclass;
